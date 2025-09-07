@@ -76,11 +76,10 @@ class ApiClient {
 
   // Natural language query
   async naturalLanguageQuery(question: string): Promise<QueryResponse> {
-    return this.request<QueryResponse>('/nl_query', {
-      method: 'POST',
-      body: JSON.stringify(question),
-    });
-  }
+  return this.request<QueryResponse>(`/nl_query?question=${encodeURIComponent(question)}`);
+}
+
+
 
   // Get plot data
   async getPlot(params: {

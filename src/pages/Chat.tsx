@@ -3,15 +3,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { GlassmorphismCard } from "@/components/GlassmorphismCard";
-import SoundwaveAnimation from "@/components/SoundwaveAnimation";
 import { apiClient } from "@/lib/api";
-import { 
-  MessageSquare, 
-  Send, 
-  BarChart3, 
-  MapPin, 
-  Thermometer, 
+import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
+import { useRef } from "react";
+import * as htmlToImage from "html-to-image";
+import download from "downloadjs";
+import {
+  MessageSquare,
+  Send,
+  BarChart3,
+  Thermometer,
   Droplets,
   Sparkles,
   User,
@@ -33,6 +34,23 @@ interface Message {
   loading?: boolean;
 }
 
+// --- Add this helper above Chat component ---
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white p-2 rounded-lg shadow-lg border border-gray-200">
+        <p className="text-gray-500 text-xs font-medium">Year: {label}</p>
+        {payload.map((item: any) => (
+          <p key={item.dataKey} className="text-sm font-semibold" style={{ color: item.stroke }}>
+            {item.name}: {item.value?.toFixed(2)}
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
+
 const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -46,6 +64,13 @@ const Chat = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [apiStatus, setApiStatus] = useState({ connected: false, checking: true });
 
+  const chartRef = useRef<HTMLDivElement>(null);
+  const handleDownloadChart = async () => {
+    if (chartRef.current) {
+      const dataUrl = await htmlToImage.toPng(chartRef.current);
+      download(dataUrl, "ocean_data_chart.png");
+    }
+  };
   const sampleQuestions = [
     "Show salinity in Arabian Sea, March 2023",
     "Temperature trends in North Atlantic",
@@ -54,13 +79,13 @@ const Chat = () => {
     "Ocean depth profiles for the Mediterranean"
   ];
 
-  // Check API status on component mount
+  // Check API status on mount
   useEffect(() => {
     const checkApiStatus = async () => {
       try {
         await apiClient.healthCheck();
         setApiStatus({ connected: true, checking: false });
-      } catch (error) {
+      } catch {
         setApiStatus({ connected: false, checking: false });
       }
     };
@@ -77,7 +102,6 @@ const Chat = () => {
       timestamp: new Date(),
     };
 
-    // Add loading message
     const loadingMessage: Message = {
       id: (Date.now() + 1).toString(),
       type: 'bot',
@@ -91,27 +115,22 @@ const Chat = () => {
     setIsLoading(true);
 
     try {
-      // Call the FastAPI natural language query endpoint
       const response = await apiClient.naturalLanguageQuery(inputValue);
-      
-      if (response.error) {
-        throw new Error(response.error);
-      }
+
+      if (response.error) throw new Error(response.error);
 
       const botResponse: Message = {
         id: (Date.now() + 2).toString(),
         type: 'bot',
         content: `I found ${response.results.length} data points. Here's the visualization based on your query.`,
         timestamp: new Date(),
-        dataType: inputValue.toLowerCase().includes('compare') ? 'chart' : 
-                  inputValue.toLowerCase().includes('position') || inputValue.toLowerCase().includes('location') ? 'map' : 'chart',
+        dataType: inputValue.toLowerCase().includes('compare') ? 'chart' :
+          inputValue.toLowerCase().includes('position') || inputValue.toLowerCase().includes('location') ? 'map' : 'chart',
         data: response.results
       };
 
-      // Replace loading message with actual response
       setMessages(prev => prev.slice(0, -1).concat(botResponse));
-
-    } catch (error) {
+    } catch {
       const errorMessage: Message = {
         id: (Date.now() + 2).toString(),
         type: 'bot',
@@ -119,16 +138,13 @@ const Chat = () => {
         timestamp: new Date(),
         error: true,
       };
-
       setMessages(prev => prev.slice(0, -1).concat(errorMessage));
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleQuestionClick = (question: string) => {
-    setInputValue(question);
-  };
+  const handleQuestionClick = (question: string) => setInputValue(question);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/30 relative">
@@ -160,31 +176,16 @@ const Chat = () => {
                 </CardDescription>
               </CardHeader>
 
-              {/* Messages */}
               <CardContent className="flex-1 overflow-y-auto p-6 space-y-4">
                 {messages.map((message) => (
                   <div key={message.id} className={`flex gap-3 ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                     <div className={`flex gap-3 max-w-[80%] ${message.type === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                      {/* Avatar */}
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                        message.type === 'user' ? 'bg-primary' : 'gradient-ocean'
-                      }`}>
-                        {message.type === 'user' ? (
-                          <User className="h-4 w-4 text-primary-foreground" />
-                        ) : (
-                          <Bot className="h-4 w-4 text-primary-foreground" />
-                        )}
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${message.type === 'user' ? 'bg-primary' : 'gradient-ocean'}`}>
+                        {message.type === 'user' ? <User className="h-4 w-4 text-primary-foreground" /> : <Bot className="h-4 w-4 text-primary-foreground" />}
                       </div>
 
-                      {/* Message Content */}
                       <div className={`space-y-2 ${message.type === 'user' ? 'text-right' : 'text-left'}`}>
-                        <div className={`inline-block p-3 rounded-lg transition-smooth ${
-                          message.type === 'user' 
-                            ? 'bg-primary text-primary-foreground shadow-ocean' 
-                            : message.error 
-                              ? 'bg-destructive/10 border border-destructive/20 text-destructive'
-                              : 'bg-muted border border-border/50 underwater-glow'
-                        }`}>
+                        <div className={`inline-block p-3 rounded-lg transition-smooth ${message.type === 'user' ? 'bg-primary text-primary-foreground shadow-ocean' : message.error ? 'bg-destructive/10 border border-destructive/20 text-destructive' : 'bg-muted border border-border/50 underwater-glow'}`}>
                           <div className="flex items-center gap-2">
                             {message.loading && <Loader2 className="h-3 w-3 animate-spin" />}
                             {message.error && <AlertCircle className="h-3 w-3" />}
@@ -192,35 +193,41 @@ const Chat = () => {
                           </div>
                         </div>
 
-                        {/* Data Visualization Preview */}
-                        {message.type === 'bot' && message.dataType && !message.loading && !message.error && (
-                          <div className="bg-background border border-border/50 rounded-lg p-4 mt-2 depth-effect">
-                            <div className="h-40 gradient-surface rounded-lg flex flex-col items-center justify-center space-y-2">
-                              {message.dataType === 'chart' && (
-                                <div className="text-center animate-float">
-                                  <BarChart3 className="h-10 w-10 text-secondary-dark mx-auto mb-2 opacity-70" />
-                                  <p className="text-secondary-dark text-sm font-medium">Generated Chart</p>
-                                  {message.data && (
-                                    <p className="text-xs text-secondary-dark/70 mt-1">
-                                      {message.data.length} data points
-                                    </p>
+                        {/* Data Visualization */}
+                        {/* Data Visualization */}
+                        {message.type === 'bot' && message.dataType === 'chart' && !message.loading && !message.error && message.data && (
+                          <div className="mt-2">
+                            {/* Chart container with ref */}
+                            <div ref={chartRef} className="h-64 w-full bg-white p-2 rounded-lg shadow">
+                              <ResponsiveContainer width="100%" height="100%">
+                                <LineChart data={message.data}>
+                                  <CartesianGrid strokeDasharray="3 3" />
+                                  <XAxis dataKey="year" />
+                                  <YAxis />
+                                  <Tooltip content={<CustomTooltip />} />
+                                  <Line type="monotone" dataKey="avg_temp" stroke="#8884d8" name="Temperature" strokeWidth={2} />
+                                  {message.data[0]?.avg_salinity && (
+                                    <Line type="monotone" dataKey="avg_salinity" stroke="#82ca9d" name="Salinity" strokeWidth={2} />
                                   )}
-                                </div>
-                              )}
-                              {message.dataType === 'map' && (
-                                <div className="text-center animate-float">
-                                  <MapPin className="h-10 w-10 text-secondary-dark mx-auto mb-2 opacity-70" />
-                                  <p className="text-secondary-dark text-sm font-medium">Interactive Map</p>
-                                  {message.data && (
-                                    <p className="text-xs text-secondary-dark/70 mt-1">
-                                      Showing {message.data.length} locations
-                                    </p>
-                                  )}
-                                </div>
-                              )}
+                                </LineChart>
+                              </ResponsiveContainer>
                             </div>
+
+                            {/* Summary */}
+                            <div className="mt-2 text-xs text-muted-foreground">
+                              Showing {message.data.length} years of data.
+                              {message.data[0]?.avg_temp && ` Avg Temp: ${message.data[0].avg_temp.toFixed(2)}°C`}
+                              {message.data[0]?.avg_salinity && ` • Avg Salinity: ${message.data[0].avg_salinity.toFixed(2)}`}
+                            </div>
+
+                            {/* Download button */}
+                            <Button onClick={handleDownloadChart} className="mt-2" size="sm" variant="outline">
+                              Download Chart
+                            </Button>
                           </div>
                         )}
+
+
 
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <Clock className="h-3 w-3" />
@@ -242,17 +249,8 @@ const Chat = () => {
                     className="flex-1"
                     onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                   />
-                  <Button 
-                    onClick={handleSendMessage} 
-                    variant="ocean" 
-                    disabled={isLoading}
-                    className="animate-depth-pulse"
-                  >
-                    {isLoading ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Send className="h-4 w-4" />
-                    )}
+                  <Button onClick={handleSendMessage} variant="ocean" disabled={isLoading} className="animate-depth-pulse">
+                    {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
                   </Button>
                 </div>
               </div>
@@ -265,18 +263,11 @@ const Chat = () => {
             <Card className="shadow-ocean animate-fade-up [animation-delay:200ms] underwater-glow depth-effect hover:animate-depth-pulse">
               <CardHeader>
                 <CardTitle className="text-lg">Sample Questions</CardTitle>
-                <CardDescription>
-                  Try these example queries
-                </CardDescription>
+                <CardDescription>Try these example queries</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
                 {sampleQuestions.map((question, index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    className="w-full text-left h-auto p-3 text-sm whitespace-normal"
-                    onClick={() => handleQuestionClick(question)}
-                  >
+                  <Button key={index} variant="outline" className="w-full text-left h-auto p-3 text-sm whitespace-normal" onClick={() => handleQuestionClick(question)}>
                     <MessageSquare className="h-3 w-3 mr-2 flex-shrink-0 mt-0.5" />
                     {question}
                   </Button>
@@ -314,40 +305,19 @@ const Chat = () => {
                 <CardTitle className="text-lg">API Status</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm">FastAPI Backend</span>
-                  {apiStatus.checking ? (
-                    <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
-                      <Loader2 className="h-3 w-3 mr-1 animate-spin" />
-                      Checking
+                {[
+                  { label: 'FastAPI Backend', status: apiStatus.checking ? 'checking' : apiStatus.connected ? 'Connected' : 'Disconnected' },
+                  { label: 'ARGO Database', status: apiStatus.connected ? 'Online' : 'Unknown' },
+                  { label: 'AI Processing', status: apiStatus.connected ? 'Ready' : 'Offline' }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center justify-between">
+                    <span className="text-sm">{item.label}</span>
+                    <Badge variant="secondary" className={`${item.status === 'checking' ? 'bg-yellow-100 text-yellow-800' : item.status === 'Connected' || item.status === 'Online' || item.status === 'Ready' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                      {item.status === 'checking' ? <Loader2 className="h-3 w-3 mr-1 animate-spin inline-block" /> : null}
+                      {item.status}
                     </Badge>
-                  ) : (
-                    <Badge 
-                      variant="secondary" 
-                      className={apiStatus.connected ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}
-                    >
-                      {apiStatus.connected ? 'Connected' : 'Disconnected'}
-                    </Badge>
-                  )}
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm">ARGO Database</span>
-                  <Badge 
-                    variant="secondary" 
-                    className={apiStatus.connected ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}
-                  >
-                    {apiStatus.connected ? 'Online' : 'Unknown'}
-                  </Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm">AI Processing</span>
-                  <Badge 
-                    variant="secondary" 
-                    className={apiStatus.connected ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}
-                  >
-                    {apiStatus.connected ? 'Ready' : 'Offline'}
-                  </Badge>
-                </div>
+                  </div>
+                ))}
               </CardContent>
             </Card>
           </div>
