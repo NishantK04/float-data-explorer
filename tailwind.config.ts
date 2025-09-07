@@ -102,6 +102,28 @@ export default {
         "fade-in": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" }
+        },
+        "bubble": {
+          "0%": { transform: "translateY(100vh) scale(0)" },
+          "50%": { transform: "translateY(50vh) scale(1)" },
+          "100%": { transform: "translateY(-10vh) scale(0)" }
+        },
+        "ripple": {
+          "0%": { transform: "scale(0)", opacity: "1" },
+          "100%": { transform: "scale(4)", opacity: "0" }
+        },
+        "ocean-flow": {
+          "0%, 100%": { transform: "translateX(-50%) translateY(0px)", opacity: "0.3" },
+          "50%": { transform: "translateX(-50%) translateY(-20px)", opacity: "0.7" }
+        },
+        "depth-pulse": {
+          "0%, 100%": { boxShadow: "0 0 0 0 hsl(var(--primary) / 0.4)" },
+          "70%": { boxShadow: "0 0 0 20px hsl(var(--primary) / 0)" }
+        },
+        "underwater": {
+          "0%": { filter: "brightness(0.8) blur(2px)", transform: "scale(0.95)" },
+          "50%": { filter: "brightness(1.1) blur(0px)", transform: "scale(1.02)" },
+          "100%": { filter: "brightness(0.8) blur(2px)", transform: "scale(0.95)" }
         }
       },
       animation: {
@@ -111,6 +133,11 @@ export default {
         "float": "float 8s ease-in-out infinite",
         "fade-up": "fade-up 0.6s ease-out",
         "fade-in": "fade-in 0.4s ease-out",
+        "bubble": "bubble 15s infinite linear",
+        "ripple": "ripple 2s infinite",
+        "ocean-flow": "ocean-flow 8s ease-in-out infinite",
+        "depth-pulse": "depth-pulse 3s infinite",
+        "underwater": "underwater 6s ease-in-out infinite",
       },
     },
   },

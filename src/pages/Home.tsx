@@ -63,15 +63,15 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden depth-effect">
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-underwater"
           style={{ 
             backgroundImage: `url(${heroImage})`,
           }}
         />
         <div className="absolute inset-0 gradient-hero opacity-90" />
-        <div className="relative container mx-auto px-4 py-20 md:py-32">
+        <div className="relative container mx-auto px-4 py-20 md:py-32 z-30">
           <div className="max-w-4xl mx-auto text-center text-white">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up">
               Making Ocean Data
@@ -136,16 +136,16 @@ const Home = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
-              return (
-                <Card 
-                  key={index} 
-                  className="group shadow-ocean hover:shadow-float transition-smooth transform hover:-translate-y-2 animate-fade-up border-border/50"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <CardContent className="p-8">
-                    <div className={`${feature.gradient} rounded-xl p-3 w-fit mb-6 group-hover:animate-float`}>
-                      <Icon className="h-8 w-8 text-primary-foreground" />
-                    </div>
+                return (
+                  <Card 
+                    key={index} 
+                    className="group shadow-ocean hover:shadow-float transition-smooth transform hover:-translate-y-2 animate-fade-up border-border/50 depth-effect underwater-glow hover:animate-depth-pulse"
+                    style={{ animationDelay: `${index * 150}ms` }}
+                  >
+                    <CardContent className="p-8">
+                      <div className={`${feature.gradient} rounded-xl p-3 w-fit mb-6 group-hover:animate-float animate-ripple`}>
+                        <Icon className="h-8 w-8 text-primary-foreground" />
+                      </div>
                     <h3 className="text-xl font-semibold mb-3 text-foreground">
                       {feature.title}
                     </h3>

@@ -16,8 +16,8 @@ import {
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/30">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/30 relative">
+      <div className="container mx-auto px-4 py-8 relative z-30">
         {/* Header */}
         <div className="mb-8 animate-fade-up">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
@@ -38,10 +38,10 @@ const Dashboard = () => {
           ].map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <Card key={index} className="shadow-ocean animate-fade-up" style={{ animationDelay: `${index * 100}ms` }}>
+              <Card key={index} className="shadow-ocean animate-fade-up underwater-glow hover:animate-depth-pulse depth-effect" style={{ animationDelay: `${index * 100}ms` }}>
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
-                    <div className="gradient-ocean rounded-lg p-2">
+                    <div className="gradient-ocean rounded-lg p-2 animate-float">
                       <Icon className="h-5 w-5 text-primary-foreground" />
                     </div>
                     <Badge variant="secondary" className="text-xs">
@@ -64,7 +64,7 @@ const Dashboard = () => {
           {/* Charts Section */}
           <div className="lg:col-span-2 space-y-8">
             {/* Temperature Chart */}
-            <Card className="shadow-ocean animate-fade-up [animation-delay:400ms]">
+            <Card className="shadow-ocean animate-fade-up [animation-delay:400ms] underwater-glow depth-effect hover:animate-depth-pulse">
               <CardHeader className="flex flex-row items-center justify-between">
                 <div>
                   <CardTitle className="flex items-center gap-2">
@@ -95,7 +95,7 @@ const Dashboard = () => {
 
             {/* Salinity & Pressure Charts */}
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="shadow-ocean animate-fade-up [animation-delay:500ms]">
+              <Card className="shadow-ocean animate-fade-up [animation-delay:500ms] underwater-glow depth-effect hover:animate-depth-pulse">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Droplets className="h-5 w-5 text-blue-500" />
@@ -112,7 +112,7 @@ const Dashboard = () => {
                 </CardContent>
               </Card>
 
-              <Card className="shadow-ocean animate-fade-up [animation-delay:600ms]">
+              <Card className="shadow-ocean animate-fade-up [animation-delay:600ms] underwater-glow depth-effect hover:animate-depth-pulse">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Wind className="h-5 w-5 text-green-500" />
@@ -134,7 +134,7 @@ const Dashboard = () => {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* World Map */}
-            <Card className="shadow-ocean animate-fade-up [animation-delay:700ms]">
+            <Card className="shadow-ocean animate-fade-up [animation-delay:700ms] underwater-glow depth-effect hover:animate-depth-pulse">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Globe className="h-5 w-5 text-primary" />
@@ -158,7 +158,7 @@ const Dashboard = () => {
             </Card>
 
             {/* Recent Data */}
-            <Card className="shadow-ocean animate-fade-up [animation-delay:800ms]">
+            <Card className="shadow-ocean animate-fade-up [animation-delay:800ms] underwater-glow depth-effect hover:animate-depth-pulse">
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle>Recent Measurements</CardTitle>
                 <Button variant="ghost" size="sm">
@@ -187,7 +187,7 @@ const Dashboard = () => {
             </Card>
 
             {/* Quick Actions */}
-            <Card className="shadow-ocean animate-fade-up [animation-delay:900ms]">
+            <Card className="shadow-ocean animate-fade-up [animation-delay:900ms] underwater-glow depth-effect hover:animate-depth-pulse">
               <CardHeader>
                 <CardTitle>Quick Actions</CardTitle>
               </CardHeader>
