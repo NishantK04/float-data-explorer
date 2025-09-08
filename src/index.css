@@ -9,39 +9,39 @@
 
 @layer base {
   :root {
-    /* Realistic Ocean Theme - Lighter & More Natural */
+    /* Realistic Ocean Theme - Better Contrast */
     --background: 200 35% 25%;       /* Ocean depth blue */
-    --foreground: 190 25% 85%;       /* Light aqua text */
+    --foreground: 45 15% 95%;        /* Light cream text for readability */
 
-    --card: 200 30% 22%;
-    --card-foreground: 190 25% 90%;
+    --card: 200 30% 18%;             /* Darker cards for contrast */
+    --card-foreground: 45 20% 92%;   /* Light text on cards */
 
-    --popover: 200 30% 20%;
-    --popover-foreground: 190 25% 90%;
+    --popover: 200 35% 16%;
+    --popover-foreground: 45 20% 92%;
 
-    /* Ocean blue primary */
-    --primary: 200 85% 45%;
-    --primary-foreground: 200 30% 15%;
-    --primary-dark: 200 95% 35%;
-    --primary-light: 200 75% 65%;
+    /* Ocean blue primary - more saturated for visibility */
+    --primary: 200 90% 55%;
+    --primary-foreground: 200 30% 8%;
+    --primary-dark: 200 95% 45%;
+    --primary-light: 200 80% 70%;
 
-    /* Seafoam secondary */
-    --secondary: 180 40% 35%;
-    --secondary-foreground: 180 15% 95%;
-    --secondary-dark: 180 50% 25%;
+    /* Coral/orange secondary for warmth */
+    --secondary: 25 70% 50%;
+    --secondary-foreground: 25 15% 95%;
+    --secondary-dark: 25 80% 40%;
 
     --muted: 200 25% 30%;
-    --muted-foreground: 190 20% 70%;
+    --muted-foreground: 45 15% 75%;   /* Better contrast for muted text */
 
-    --accent: 170 60% 55%;
-    --accent-foreground: 170 30% 15%;
+    --accent: 170 80% 60%;            /* Bright teal accent */
+    --accent-foreground: 170 30% 10%;
 
     --destructive: 15 85% 55%;
-    --destructive-foreground: 190 25% 95%;
+    --destructive-foreground: 45 15% 95%;
 
-    --border: 190 25% 40%;
-    --input: 190 25% 35%;
-    --ring: 200 85% 45%;
+    --border: 200 40% 45%;            /* More visible borders */
+    --input: 200 35% 20%;
+    --ring: 200 90% 55%;
 
     --radius: 1rem;
 
@@ -84,35 +84,35 @@
 
   /* Light Ocean Surface Theme */
   .light {
-    --background: 195 50% 85%;
-    --foreground: 200 40% 15%;
+    --background: 195 50% 92%;        /* Light ocean surface */
+    --foreground: 200 40% 8%;         /* Dark text for light mode */
 
-    --card: 195 45% 88%;
-    --card-foreground: 200 35% 15%;
+    --card: 195 45% 96%;
+    --card-foreground: 200 35% 12%;
 
-    --popover: 195 45% 88%;
-    --popover-foreground: 200 35% 15%;
+    --popover: 195 45% 96%;
+    --popover-foreground: 200 35% 12%;
 
     --primary: 200 85% 35%;
-    --primary-foreground: 195 45% 95%;
+    --primary-foreground: 195 45% 98%;
     --primary-dark: 200 95% 25%;
     --primary-light: 200 75% 55%;
 
-    --secondary: 180 45% 75%;
-    --secondary-foreground: 180 40% 20%;
-    --secondary-dark: 180 60% 55%;
+    --secondary: 25 70% 60%;           /* Coral secondary */
+    --secondary-foreground: 25 40% 15%;
+    --secondary-dark: 25 80% 50%;
 
-    --muted: 195 30% 80%;
-    --muted-foreground: 195 25% 40%;
+    --muted: 195 30% 88%;
+    --muted-foreground: 195 25% 35%;
 
-    --accent: 170 60% 65%;
-    --accent-foreground: 170 40% 20%;
+    --accent: 170 60% 45%;
+    --accent-foreground: 170 40% 95%;
 
     --destructive: 15 85% 55%;
-    --destructive-foreground: 195 45% 95%;
+    --destructive-foreground: 195 45% 98%;
 
-    --border: 190 35% 70%;
-    --input: 190 35% 75%;
+    --border: 190 35% 75%;
+    --input: 190 35% 85%;
     --ring: 200 85% 35%;
 
     /* Ocean Floor Colors */
@@ -173,23 +173,25 @@
   .transition-wave { transition: var(--transition-wave); }
   .transition-glow { transition: var(--transition-glow); }
 
-  /* Glassmorphism */
+  /* Glassmorphism with better visibility */
   .glass-card {
-    background: hsl(var(--card)/0.12);
+    background: hsl(var(--card)/0.25);
     backdrop-filter: blur(20px);
-    border: 1px solid hsl(var(--border)/0.25);
+    border: 1px solid hsl(var(--border)/0.4);
     box-shadow: var(--shadow-glass);
   }
   .glass-button {
-    background: hsl(var(--primary)/0.12);
+    background: hsl(var(--card)/0.3);
     backdrop-filter: blur(10px);
-    border: 1px solid hsl(var(--primary)/0.35);
+    border: 1px solid hsl(var(--border)/0.5);
+    color: hsl(var(--foreground));
     transition: all 0.3s ease;
   }
   .glass-button:hover {
-    background: hsl(var(--primary)/0.25);
-    border-color: hsl(var(--primary)/0.5);
+    background: hsl(var(--card)/0.5);
+    border-color: hsl(var(--primary)/0.6);
     box-shadow: var(--shadow-neon);
+    color: hsl(var(--foreground));
   }
 
   /* Neon glow text & border */

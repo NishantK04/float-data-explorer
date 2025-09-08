@@ -18,8 +18,8 @@ const buttonVariants = cva(
         hero: "gradient-ocean text-primary-foreground hover:shadow-neon transform hover:scale-105 border border-primary-light/20 relative before:absolute before:inset-0 before:bg-gradient-glow before:opacity-0 hover:before:opacity-100 before:transition-opacity",
         ocean: "bg-primary text-primary-foreground hover:bg-primary-light shadow-ocean hover:shadow-neon transform hover:-translate-y-1 animate-glow-pulse",
         surface: "gradient-surface text-secondary-dark border border-accent/30 hover:shadow-neon backdrop-blur-sm",
-        glass: "glass-button text-primary-foreground hover:shadow-neon",
-        neon: "bg-primary/20 text-primary border neon-border hover:bg-primary/30 animate-glow-pulse",
+        glass: "glass-button hover:shadow-neon",
+        neon: "bg-primary/20 text-primary border border-primary shadow-neon hover:bg-primary/30 hover:shadow-neon backdrop-blur-sm",
       },
       size: {
         default: "h-10 px-4 py-2",
