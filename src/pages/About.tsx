@@ -48,7 +48,7 @@ const features = [
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/30">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-up">
@@ -61,8 +61,8 @@ const About = () => {
         </div>
 
         {/* Mission Statement */}
-        <Card className="mb-16 shadow-float animate-fade-up [animation-delay:200ms]">
-          <CardHeader className="gradient-ocean text-primary-foreground text-center">
+        <Card className="mb-16 shadow-elegant animate-fade-up [animation-delay:200ms] hover-lift">
+          <CardHeader className="gradient-primary text-white text-center rounded-t-xl">
             <CardTitle className="text-2xl md:text-3xl flex items-center justify-center gap-3">
               <Target className="h-8 w-8" />
               Our Mission
@@ -84,7 +84,7 @@ const About = () => {
 
         {/* Project Goals */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <Card className="shadow-ocean animate-fade-up [animation-delay:300ms]">
+          <Card className="shadow-elegant animate-fade-up [animation-delay:300ms] hover-lift">
             <CardHeader>
               <CardTitle className="flex items-center gap-3">
                 <Lightbulb className="h-6 w-6 text-primary" />
@@ -113,7 +113,7 @@ const About = () => {
             </CardContent>
           </Card>
 
-          <Card className="shadow-ocean animate-fade-up [animation-delay:400ms]">
+          <Card className="shadow-elegant animate-fade-up [animation-delay:400ms] hover-lift">
             <CardHeader>
               <CardTitle className="flex items-center gap-3">
                 <Heart className="h-6 w-6 text-red-500" />
@@ -154,12 +154,12 @@ const About = () => {
               return (
                 <Card 
                   key={index} 
-                  className="text-center shadow-ocean hover:shadow-float transition-smooth transform hover:-translate-y-2 animate-fade-up"
+                  className="text-center shadow-elegant hover:shadow-glow hover-lift animate-fade-up glass"
                   style={{ animationDelay: `${500 + index * 100}ms` }}
                 >
                   <CardContent className="p-6">
-                    <div className="gradient-ocean rounded-xl p-4 w-fit mx-auto mb-4">
-                      <Icon className="h-8 w-8 text-primary-foreground" />
+                    <div className="gradient-primary rounded-xl p-4 w-fit mx-auto mb-4 shadow-glow">
+                      <Icon className="h-8 w-8 text-white" />
                     </div>
                     <h3 className="font-semibold mb-2 text-foreground">{feature.title}</h3>
                     <p className="text-sm text-muted-foreground">{feature.description}</p>
@@ -171,13 +171,13 @@ const About = () => {
         </div>
 
         {/* SIH Hackathon */}
-        <Card className="mb-16 shadow-float animate-fade-up [animation-delay:900ms]">
-          <CardHeader className="gradient-surface">
-            <CardTitle className="flex items-center gap-3 text-secondary-dark">
+        <Card className="mb-16 shadow-elegant animate-fade-up [animation-delay:900ms] hover-lift">
+          <CardHeader className="gradient-surface rounded-t-xl">
+            <CardTitle className="flex items-center gap-3 text-primary">
               <Award className="h-6 w-6" />
               Smart India Hackathon 2024
             </CardTitle>
-            <CardDescription className="text-secondary-dark/80">
+            <CardDescription className="text-muted-foreground">
               Developed as part of the national innovation challenge
             </CardDescription>
           </CardHeader>
@@ -216,7 +216,7 @@ const About = () => {
         </Card>
 
         {/* Technology Stack */}
-        <Card className="mb-16 shadow-ocean animate-fade-up [animation-delay:1000ms]">
+        <Card className="mb-16 shadow-elegant animate-fade-up [animation-delay:1000ms] hover-lift">
           <CardHeader>
             <CardTitle className="flex items-center gap-3">
               <Code className="h-6 w-6 text-primary" />
@@ -261,20 +261,20 @@ const About = () => {
 
         {/* Call to Action */}
         <div className="text-center animate-fade-up [animation-delay:1100ms]">
-          <Card className="gradient-ocean text-primary-foreground shadow-depth max-w-4xl mx-auto">
+          <Card className="gradient-primary text-white shadow-xl max-w-4xl mx-auto hover-lift">
             <CardContent className="p-8 md:p-12">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Join the Ocean Data Revolution
               </h2>
-              <p className="text-lg mb-8 text-primary-foreground/90">
+              <p className="text-xl mb-8 text-white/90">
                 Explore our platform, contribute to ocean research, and help make scientific data accessible to everyone.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="surface" size="lg" className="text-lg px-8 py-6 h-auto">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Button variant="secondary" size="lg" className="text-lg px-8 py-6 h-auto font-semibold">
                   <BarChart3 className="h-5 w-5 mr-2" />
                   Explore Dashboard
                 </Button>
-                <Button variant="outline" size="lg" className="text-lg px-8 py-6 h-auto border-white/30 text-white hover:bg-white/10">
+                <Button variant="outline" size="lg" className="text-lg px-8 py-6 h-auto border-white/30 text-white hover:bg-white/10 font-semibold">
                   <Github className="h-5 w-5 mr-2" />
                   View on GitHub
                   <ExternalLink className="h-4 w-4 ml-2" />

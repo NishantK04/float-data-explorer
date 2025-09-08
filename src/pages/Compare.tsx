@@ -92,13 +92,13 @@ const Compare = () => {
   }, [region1, region2, selectedParameter, startYear, endYear]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/30">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8 animate-fade-up">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2 flex items-center gap-3">
-            <div className="gradient-ocean rounded-xl p-3">
-              <GitCompare className="h-8 w-8 text-primary-foreground" />
+            <div className="gradient-primary rounded-xl p-3 shadow-glow">
+              <GitCompare className="h-8 w-8 text-white" />
             </div>
             Ocean Data Comparison
           </h1>
@@ -108,7 +108,7 @@ const Compare = () => {
         </div>
 
         {/* Controls */}
-        <Card className="mb-8 shadow-ocean animate-fade-up [animation-delay:200ms]">
+        <Card className="mb-8 shadow-elegant animate-fade-up [animation-delay:200ms] hover-lift">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <ArrowLeftRight className="h-5 w-5 text-primary" />
@@ -207,7 +207,7 @@ const Compare = () => {
             </div>
 
             <div className="flex flex-wrap gap-3 mt-6">
-              <Button variant="ocean" onClick={fetchData}>
+              <Button onClick={fetchData} className="btn-glow">
                 <RefreshCw className="h-4 w-4 mr-2" />
                 Update Comparison
               </Button>
@@ -220,7 +220,7 @@ const Compare = () => {
         </Card>
 
         {/* Comparison Chart */}
-        <Card className="shadow-ocean animate-fade-up [animation-delay:500ms]">
+        <Card className="shadow-elegant animate-fade-up [animation-delay:500ms] hover-lift">
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
               <CardTitle className="flex items-center gap-2">

@@ -63,37 +63,31 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden depth-effect">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-underwater"
-          style={{ 
-            backgroundImage: `url(${heroImage})`,
-          }}
-        />
-        <div className="absolute inset-0 gradient-hero opacity-90" />
-        <div className="relative container mx-auto px-4 py-20 md:py-32 z-30">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up">
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 gradient-hero opacity-20" />
+        <div className="relative container mx-auto px-4 py-20 md:py-32">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-up">
               Making Ocean Data
-              <span className="block gradient-surface bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-primary via-purple-600 to-cyan-500 bg-clip-text text-transparent">
                 Accessible to All
               </span>
             </h1>
-            <p className="text-lg md:text-xl mb-8 text-white/90 max-w-2xl mx-auto animate-fade-up [animation-delay:200ms]">
+            <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-3xl mx-auto animate-fade-up [animation-delay:200ms]">
               Discover, visualize, and analyze oceanographic data from ARGO floats worldwide. 
               Ask questions in natural language and get instant insights about our oceans.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up [animation-delay:400ms]">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-up [animation-delay:400ms]">
               <Link to="/dashboard">
-                <Button variant="hero" size="lg" className="text-lg px-8 py-6 h-auto">
-                  <BarChart3 className="h-5 w-5 mr-2" />
+                <Button size="lg" className="text-lg px-8 py-6 h-auto btn-glow hover-lift">
+                  <BarChart3 className="h-6 w-6 mr-3" />
                   Explore Data
-                  <ChevronRight className="h-4 w-4 ml-2" />
+                  <ChevronRight className="h-5 w-5 ml-2" />
                 </Button>
               </Link>
               <Link to="/chat">
-                <Button variant="surface" size="lg" className="text-lg px-8 py-6 h-auto">
-                  <Play className="h-5 w-5 mr-2" />
+                <Button variant="outline" size="lg" className="text-lg px-8 py-6 h-auto hover-lift">
+                  <Play className="h-6 w-6 mr-3" />
                   Try AI Chat
                 </Button>
               </Link>
@@ -103,15 +97,15 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 gradient-surface">
+      <section className="py-20 bg-muted/50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center animate-fade-up" style={{ animationDelay: `${index * 100}ms` }}>
-                <div className="text-3xl md:text-4xl font-bold text-secondary-dark mb-2">
+              <div key={index} className="text-center animate-fade-up hover-lift" style={{ animationDelay: `${index * 100}ms` }}>
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent mb-3">
                   {stat.number}
                 </div>
-                <div className="text-sm md:text-base text-secondary-dark/80">
+                <div className="text-base md:text-lg font-medium text-muted-foreground">
                   {stat.label}
                 </div>
               </div>
@@ -121,13 +115,13 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-24">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-fade-up">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+          <div className="text-center mb-20 animate-fade-up">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
               Powerful Ocean Data Platform
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Everything you need to explore, understand, and analyze oceanographic data 
               from the world's largest network of autonomous ocean sensors.
             </p>
@@ -139,17 +133,17 @@ const Home = () => {
                 return (
                   <Card 
                     key={index} 
-                    className="group shadow-ocean hover:shadow-float transition-smooth transform hover:-translate-y-2 animate-fade-up border-border/50 depth-effect underwater-glow hover:animate-depth-pulse"
+                    className="group hover-lift shadow-elegant hover:shadow-glow transition-all animate-fade-up border-0 glass"
                     style={{ animationDelay: `${index * 150}ms` }}
                   >
                     <CardContent className="p-8">
-                      <div className={`${feature.gradient} rounded-xl p-3 w-fit mb-6 group-hover:animate-float animate-ripple`}>
-                        <Icon className="h-8 w-8 text-primary-foreground" />
+                      <div className="gradient-primary rounded-2xl p-4 w-fit mb-6 group-hover:animate-pulse-glow">
+                        <Icon className="h-8 w-8 text-white" />
                       </div>
-                    <h3 className="text-xl font-semibold mb-3 text-foreground">
+                    <h3 className="text-2xl font-bold mb-4 text-foreground">
                       {feature.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed text-lg">
                       {feature.description}
                     </p>
                   </CardContent>
@@ -161,26 +155,26 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 gradient-ocean relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+      <section className="py-24 gradient-primary relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-transparent" />
         <div className="container mx-auto px-4 text-center relative">
-          <div className="max-w-3xl mx-auto text-white animate-fade-up">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <div className="max-w-4xl mx-auto text-white animate-fade-up">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8">
               Ready to Dive into Ocean Data?
             </h2>
-            <p className="text-lg mb-8 text-white/90">
+            <p className="text-xl md:text-2xl mb-12 text-white/90">
               Join researchers, students, and policymakers worldwide in exploring 
               the depths of our oceans through data-driven insights.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link to="/dashboard">
-                <Button variant="surface" size="lg" className="text-lg px-8 py-6 h-auto">
-                  <BarChart3 className="h-5 w-5 mr-2" />
+                <Button variant="secondary" size="lg" className="text-lg px-10 py-6 h-auto font-semibold hover-lift">
+                  <BarChart3 className="h-6 w-6 mr-3" />
                   Start Exploring
                 </Button>
               </Link>
               <Link to="/about">
-                <Button variant="outline" size="lg" className="text-lg px-8 py-6 h-auto border-white/30 text-white hover:bg-white/10">
+                <Button variant="outline" size="lg" className="text-lg px-10 py-6 h-auto border-white/30 text-white hover:bg-white/10 font-semibold hover-lift">
                   Learn More
                 </Button>
               </Link>

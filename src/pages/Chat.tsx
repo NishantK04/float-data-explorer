@@ -147,13 +147,13 @@ const Chat = () => {
   const handleQuestionClick = (question: string) => setInputValue(question);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/30 relative">
-      <div className="container mx-auto px-4 py-8 relative z-30">
+    <div className="min-h-screen">
+      <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8 animate-fade-up">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2 flex items-center gap-3">
-            <div className="gradient-ocean rounded-xl p-3 animate-depth-pulse">
-              <MessageSquare className="h-8 w-8 text-primary-foreground" />
+            <div className="gradient-primary rounded-xl p-3 shadow-glow">
+              <MessageSquare className="h-8 w-8 text-white" />
             </div>
             AI Ocean Data Chat
           </h1>
@@ -165,7 +165,7 @@ const Chat = () => {
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Chat Interface */}
           <div className="lg:col-span-3">
-            <Card className="h-[700px] flex flex-col shadow-ocean animate-fade-up underwater-glow depth-effect">
+            <Card className="h-[700px] flex flex-col shadow-elegant animate-fade-up glass">
               <CardHeader className="border-b border-border/50">
                 <CardTitle className="flex items-center gap-2">
                   <Sparkles className="h-5 w-5 text-primary" />
@@ -180,12 +180,12 @@ const Chat = () => {
                 {messages.map((message) => (
                   <div key={message.id} className={`flex gap-3 ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                     <div className={`flex gap-3 max-w-[80%] ${message.type === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${message.type === 'user' ? 'bg-primary' : 'gradient-ocean'}`}>
-                        {message.type === 'user' ? <User className="h-4 w-4 text-primary-foreground" /> : <Bot className="h-4 w-4 text-primary-foreground" />}
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${message.type === 'user' ? 'bg-primary' : 'gradient-primary'}`}>
+                        {message.type === 'user' ? <User className="h-4 w-4 text-white" /> : <Bot className="h-4 w-4 text-white" />}
                       </div>
 
                       <div className={`space-y-2 ${message.type === 'user' ? 'text-right' : 'text-left'}`}>
-                        <div className={`inline-block p-3 rounded-lg transition-smooth ${message.type === 'user' ? 'bg-primary text-primary-foreground shadow-ocean' : message.error ? 'bg-destructive/10 border border-destructive/20 text-destructive' : 'bg-muted border border-border/50 underwater-glow'}`}>
+                        <div className={`inline-block p-3 rounded-lg transition-all ${message.type === 'user' ? 'bg-primary text-primary-foreground shadow-elegant' : message.error ? 'bg-destructive/10 border border-destructive/20 text-destructive' : 'bg-muted border glass'}`}>
                           <div className="flex items-center gap-2">
                             {message.loading && <Loader2 className="h-3 w-3 animate-spin" />}
                             {message.error && <AlertCircle className="h-3 w-3" />}
@@ -249,7 +249,7 @@ const Chat = () => {
                     className="flex-1"
                     onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                   />
-                  <Button onClick={handleSendMessage} variant="ocean" disabled={isLoading} className="animate-depth-pulse">
+                  <Button onClick={handleSendMessage} disabled={isLoading} className="btn-glow">
                     {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
                   </Button>
                 </div>
@@ -260,7 +260,7 @@ const Chat = () => {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Sample Questions */}
-            <Card className="shadow-ocean animate-fade-up [animation-delay:200ms] underwater-glow depth-effect hover:animate-depth-pulse">
+            <Card className="shadow-elegant animate-fade-up [animation-delay:200ms] hover-lift">
               <CardHeader>
                 <CardTitle className="text-lg">Sample Questions</CardTitle>
                 <CardDescription>Try these example queries</CardDescription>
@@ -276,7 +276,7 @@ const Chat = () => {
             </Card>
 
             {/* Data Types */}
-            <Card className="shadow-ocean animate-fade-up [animation-delay:300ms] underwater-glow depth-effect hover:animate-depth-pulse">
+            <Card className="shadow-elegant animate-fade-up [animation-delay:300ms] hover-lift">
               <CardHeader>
                 <CardTitle className="text-lg">Available Data</CardTitle>
               </CardHeader>
@@ -300,7 +300,7 @@ const Chat = () => {
             </Card>
 
             {/* API Status */}
-            <Card className="shadow-ocean animate-fade-up [animation-delay:400ms] underwater-glow depth-effect hover:animate-depth-pulse">
+            <Card className="shadow-elegant animate-fade-up [animation-delay:400ms] hover-lift">
               <CardHeader>
                 <CardTitle className="text-lg">API Status</CardTitle>
               </CardHeader>
