@@ -3,62 +3,68 @@
 @tailwind utilities;
 
 /* -----------------------------
-   Design System: Deep Ocean Theme
+   Design System: Realistic Ocean Theme
    All colors are HSL
 ----------------------------- */
 
 @layer base {
   :root {
-    /* Deep Ocean Dark Theme (Updated) */
-    --background: 215 50% 12%;       /* lighter for readability */
-    --foreground: 180 100% 92%;      /* softer text */
+    /* Realistic Ocean Theme - Lighter & More Natural */
+    --background: 200 35% 25%;       /* Ocean depth blue */
+    --foreground: 190 25% 85%;       /* Light aqua text */
 
-    --card: 215 45% 10%;
-    --card-foreground: 180 95% 95%;
+    --card: 200 30% 22%;
+    --card-foreground: 190 25% 90%;
 
-    --popover: 215 50% 12%;
-    --popover-foreground: 180 95% 95%;
+    --popover: 200 30% 20%;
+    --popover-foreground: 190 25% 90%;
 
-    /* Glowing cyan primary */
-    --primary: 180 100% 50%;
-    --primary-foreground: 215 50% 10%;
-    --primary-dark: 180 100% 35%;
-    --primary-light: 180 100% 70%;
+    /* Ocean blue primary */
+    --primary: 200 85% 45%;
+    --primary-foreground: 200 30% 15%;
+    --primary-dark: 200 95% 35%;
+    --primary-light: 200 75% 65%;
 
-    /* Deep teal secondary */
-    --secondary: 195 50% 18%;
-    --secondary-foreground: 180 100% 88%;
-    --secondary-dark: 195 60% 12%;
+    /* Seafoam secondary */
+    --secondary: 180 40% 35%;
+    --secondary-foreground: 180 15% 95%;
+    --secondary-dark: 180 50% 25%;
 
-    --muted: 215 35% 12%;
-    --muted-foreground: 180 40% 65%;
+    --muted: 200 25% 30%;
+    --muted-foreground: 190 20% 70%;
 
-    --accent: 195 100% 65%;
-    --accent-foreground: 215 50% 10%;
+    --accent: 170 60% 55%;
+    --accent-foreground: 170 30% 15%;
 
-    --destructive: 0 100% 55%;
-    --destructive-foreground: 180 100% 95%;
+    --destructive: 15 85% 55%;
+    --destructive-foreground: 190 25% 95%;
 
-    --border: 195 35% 18%;
-    --input: 195 35% 15%;
-    --ring: 180 100% 50%;
+    --border: 190 25% 40%;
+    --input: 190 25% 35%;
+    --ring: 200 85% 45%;
 
     --radius: 1rem;
 
-    /* Gradients */
-    --gradient-ocean: linear-gradient(135deg, hsl(215,50%,12%) 0%, hsl(195,60%,15%) 50%, hsl(180,80%,22%) 100%);
-    --gradient-deep: linear-gradient(180deg, hsl(215,60%,10%) 0%, hsl(215,50%,12%) 100%);
-    --gradient-surface: linear-gradient(135deg, hsl(195,40%,15%) 0%, hsl(180,60%,25%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(215,60%,10%) 0%, hsl(195,50%,12%) 30%, hsl(180,70%,18%) 100%);
-    --gradient-glass: linear-gradient(135deg, hsl(195,40%,18% / 0.1) 0%, hsl(180,60%,28% / 0.05) 100%);
-    --gradient-glow: radial-gradient(circle, hsl(180,100%,50% / 0.35) 0%, transparent 70%);
+    /* Ocean Floor Colors */
+    --sand: 45 60% 70%;
+    --coral: 15 85% 65%;
+    --seaweed: 120 40% 35%;
+    --rock: 220 15% 25%;
 
-    /* Shadows */
-    --shadow-ocean: 0 10px 40px -10px hsl(180 100% 50% / 0.45);
-    --shadow-float: 0 20px 60px -15px hsl(180 100% 50% / 0.35);
-    --shadow-depth: 0 25px 80px -20px hsl(195 80% 35% / 0.5);
-    --shadow-neon: 0 0 20px hsl(180 100% 50% / 0.65), 0 0 40px hsl(180 100% 50% / 0.45), 0 0 60px hsl(180 100% 50% / 0.25);
-    --shadow-glass: 0 8px 32px hsl(195 60% 18% / 0.45);
+    /* Realistic Ocean Gradients */
+    --gradient-ocean: linear-gradient(180deg, hsl(200,85%,45%) 0%, hsl(200,70%,35%) 40%, hsl(200,50%,25%) 80%, hsl(200,40%,15%) 100%);
+    --gradient-seafloor: linear-gradient(180deg, hsl(200,40%,15%) 0%, hsl(45,40%,35%) 50%, hsl(45,60%,70%) 100%);
+    --gradient-surface: linear-gradient(135deg, hsl(190,60%,45%) 0%, hsl(180,70%,55%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(200,85%,45%) 0%, hsl(200,70%,35%) 30%, hsl(200,50%,25%) 70%, hsl(45,40%,35%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(190,40%,35% / 0.15) 0%, hsl(180,50%,45% / 0.08) 100%);
+    --gradient-glow: radial-gradient(circle, hsl(200,85%,45% / 0.25) 0%, transparent 70%);
+
+    /* Natural Shadows */
+    --shadow-ocean: 0 15px 50px -10px hsl(200 85% 35% / 0.35);
+    --shadow-float: 0 25px 70px -15px hsl(200 70% 40% / 0.3);
+    --shadow-depth: 0 30px 90px -20px hsl(200 60% 25% / 0.4);
+    --shadow-neon: 0 0 15px hsl(200 85% 45% / 0.5), 0 0 30px hsl(200 85% 45% / 0.3), 0 0 45px hsl(200 85% 45% / 0.15);
+    --shadow-glass: 0 12px 40px hsl(190 40% 30% / 0.35);
 
     /* Transitions */
     --transition-smooth: all 0.4s cubic-bezier(0.23,1,0.32,1);
@@ -76,54 +82,59 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  /* Light theme remains your original definition */
+  /* Light Ocean Surface Theme */
   .light {
-    /* Light Ocean Surface Theme */
-    --background: 220 30% 98%;
-    --foreground: 215 25% 15%;
+    --background: 195 50% 85%;
+    --foreground: 200 40% 15%;
 
-    --card: 220 25% 97%;
-    --card-foreground: 215 25% 15%;
+    --card: 195 45% 88%;
+    --card-foreground: 200 35% 15%;
 
-    --popover: 220 25% 97%;
-    --popover-foreground: 215 25% 15%;
+    --popover: 195 45% 88%;
+    --popover-foreground: 200 35% 15%;
 
-    --primary: 210 85% 35%;
-    --primary-foreground: 210 20% 98%;
-    --primary-dark: 210 90% 25%;
-    --primary-light: 210 75% 55%;
+    --primary: 200 85% 35%;
+    --primary-foreground: 195 45% 95%;
+    --primary-dark: 200 95% 25%;
+    --primary-light: 200 75% 55%;
 
-    --secondary: 180 45% 88%;
-    --secondary-foreground: 180 85% 25%;
-    --secondary-dark: 180 85% 35%;
+    --secondary: 180 45% 75%;
+    --secondary-foreground: 180 40% 20%;
+    --secondary-dark: 180 60% 55%;
 
-    --muted: 215 20% 92%;
-    --muted-foreground: 215 15% 45%;
+    --muted: 195 30% 80%;
+    --muted-foreground: 195 25% 40%;
 
-    --accent: 185 70% 85%;
-    --accent-foreground: 185 85% 25%;
+    --accent: 170 60% 65%;
+    --accent-foreground: 170 40% 20%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive: 15 85% 55%;
+    --destructive-foreground: 195 45% 95%;
 
-    --border: 215 25% 88%;
-    --input: 215 25% 90%;
-    --ring: 210 85% 35%;
+    --border: 190 35% 70%;
+    --input: 190 35% 75%;
+    --ring: 200 85% 35%;
+
+    /* Ocean Floor Colors */
+    --sand: 45 60% 80%;
+    --coral: 15 75% 75%;
+    --seaweed: 120 50% 45%;
+    --rock: 220 25% 35%;
 
     /* Light ocean gradients */
-    --gradient-ocean: linear-gradient(135deg, hsl(210, 85%, 35%) 0%, hsl(185, 75%, 45%) 100%);
-    --gradient-deep: linear-gradient(180deg, hsl(210, 90%, 25%) 0%, hsl(210, 85%, 35%) 100%);
-    --gradient-surface: linear-gradient(135deg, hsl(185, 75%, 85%) 0%, hsl(210, 60%, 92%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(210, 85%, 15%) 0%, hsl(210, 75%, 35%) 50%, hsl(185, 70%, 45%) 100%);
-    --gradient-glass: linear-gradient(135deg, hsl(220, 30%, 95% / 0.8) 0%, hsl(185, 60%, 90% / 0.6) 100%);
-    --gradient-glow: radial-gradient(circle, hsl(210, 85%, 35% / 0.2) 0%, transparent 70%);
+    --gradient-ocean: linear-gradient(180deg, hsl(195,70%,75%) 0%, hsl(200,60%,65%) 40%, hsl(200,50%,55%) 80%, hsl(45,50%,70%) 100%);
+    --gradient-seafloor: linear-gradient(180deg, hsl(200,50%,55%) 0%, hsl(45,50%,65%) 50%, hsl(45,60%,80%) 100%);
+    --gradient-surface: linear-gradient(135deg, hsl(190,70%,65%) 0%, hsl(180,75%,75%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(195,70%,75%) 0%, hsl(200,60%,65%) 30%, hsl(200,50%,55%) 70%, hsl(45,50%,65%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(195, 40%, 80% / 0.6) 0%, hsl(185, 50%, 85% / 0.4) 100%);
+    --gradient-glow: radial-gradient(circle, hsl(200, 75%, 55% / 0.15) 0%, transparent 70%);
 
     /* Light shadows */
-    --shadow-ocean: 0 10px 40px -10px hsl(210 85% 35% / 0.3);
-    --shadow-float: 0 20px 60px -15px hsl(210 85% 35% / 0.4);
-    --shadow-depth: 0 25px 80px -20px hsl(210 90% 25% / 0.5);
-    --shadow-neon: 0 0 20px hsl(210 85% 35% / 0.4), 0 0 40px hsl(210 85% 35% / 0.3), 0 0 60px hsl(210 85% 35% / 0.2);
-    --shadow-glass: 0 8px 32px hsl(220 30% 80% / 0.3);
+    --shadow-ocean: 0 15px 50px -10px hsl(200 75% 45% / 0.25);
+    --shadow-float: 0 25px 70px -15px hsl(200 70% 50% / 0.3);
+    --shadow-depth: 0 30px 90px -20px hsl(200 60% 35% / 0.35);
+    --shadow-neon: 0 0 15px hsl(200 75% 45% / 0.3), 0 0 30px hsl(200 75% 45% / 0.2), 0 0 45px hsl(200 75% 45% / 0.1);
+    --shadow-glass: 0 12px 40px hsl(195 50% 60% / 0.25);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -239,7 +250,7 @@
     pointer-events:none;
   }
 
-  /* Bubble & ocean flow keyframes */
+  /* Ocean & underwater keyframes */
   @keyframes bubble {
     0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
     50% { opacity: 0.7; }
@@ -248,6 +259,55 @@
   @keyframes ocean-flow {
     0%,100% { transform: translateX(0) translateY(0); }
     50% { transform: translateX(20px) translateY(10px); }
+  }
+  @keyframes seaweed-sway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+  @keyframes float-particle {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-20px) translateX(10px); opacity: 0; }
+  }
+  @keyframes caustics {
+    0%, 100% { transform: translateX(0) scaleX(1); }
+    50% { transform: translateX(30px) scaleX(1.1); }
+  }
+  @keyframes swim-right {
+    0% { transform: translateX(-50px); }
+    100% { transform: translateX(calc(100vw + 50px)); }
+  }
+  @keyframes swim-left {
+    0% { transform: translateX(calc(100vw + 50px)); }
+    100% { transform: translateX(-50px); }
+  }
+  @keyframes fish-wiggle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+  }
+  @keyframes school-swim {
+    0% { transform: translateX(-100px) translateY(0); }
+    25% { transform: translateX(20vw) translateY(-10px); }
+    50% { transform: translateX(50vw) translateY(5px); }
+    75% { transform: translateX(80vw) translateY(-5px); }
+    100% { transform: translateX(calc(100vw + 100px)) translateY(0); }
+  }
+  @keyframes tiny-fish-wiggle {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-1px) rotate(2deg); }
+  }
+  @keyframes wave-1 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-200px); }
+  }
+  @keyframes wave-2 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(150px); }
+  }
+  @keyframes wave-3 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100px); }
   }
 }
 

@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { cn } from "@/lib/utils";
-import OceanBackground from "./OceanBackground";
-import ParallaxWaves from "./ParallaxWaves";
-import AnimatedCreatures from "./AnimatedCreatures";
+import UnderwaterLandscape from "./UnderwaterLandscape";
+import AnimatedFish from "./AnimatedFish";
 import { 
   Waves, 
   BarChart3, 
@@ -36,9 +35,8 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <ThemeProvider defaultTheme="dark">
       <div className="min-h-screen gradient-ocean relative overflow-hidden">
-        <ParallaxWaves />
-        <OceanBackground />
-        <AnimatedCreatures />
+        <UnderwaterLandscape />
+        <AnimatedFish />
         
         {/* Navigation */}
         <nav className="sticky top-0 z-50 border-b border-border/20 bg-card/20 backdrop-blur-xl shadow-glass">
